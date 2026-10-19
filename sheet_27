@@ -1,0 +1,23 @@
+"""
+Draw this graph on paper. Edges: A–B, A–C, B–D, C–D, D–E (the same graph as last week's Exercise 1). Make 
+a trace table for BFS from A: take from front / add to back / queue after. Then write bfs_order(adj, 
+start) from a blank file. It returns the list of nodes in the order BFS visits them.
+"""
+from collections import deque
+edges = [('A', 'B'), ('A', 'C'), ('B', 'D'), ('C', 'D'), ('D', 'E')]
+
+def bes_order(adj, start):
+    visited = {start}
+    queue = deque([start])
+    order = []
+    while queue:
+        node = queue.popleft()
+        order.append(node)
+        for nb in adj[node]:
+            if nb not in visited:
+                visited.add(nb)
+                queue.append(nb)
+    return order
+print(bes_order(edges, "A"))
+print(bes_order(edges, "D"))
+            
